@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="fragment-side">
+
+    <div id="sidebar-left">
+
+        <div class="list-group">
+
+            <h3>사이드 메뉴</h3>
+            <th:block th:if="${session.memberInfo} != null and ${session.memberInfo.memberId} == 'admin' ">
+                <a th:href="@{/member}" class="list-group-item">회원 관리</a>
+            </th:block>
+            <a th:href="@{/post}" class="list-group-item">게시판</a>
+            <a href="#" class="list-group-item">상품 관리</a>
+        </div>
+    </div>
+</div>
+</html>

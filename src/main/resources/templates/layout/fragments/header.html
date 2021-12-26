@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="fragment-header">
+
+
+    <div id="header">
+        <h2 id="header-title" >게시판</h2>
+
+        <th:block th:if="${session.memberInfo == null}">
+            <a href="/member/login" role="button" class="btn btn-success" style="margin-left: 700px">로그인</a>
+            <a href="/member/create" role="button" class="btn btn-success">회원가입</a>
+        </th:block>
+
+        <th:block th:if="${session.memberInfo != null} and ${session.memberInfo.memberId != 'admin' }">
+            <div style="margin-left: 700px;" >[[${session.memberInfo.memberId}]] 님 안녕하세요</div>
+            <a href="/member/logout" role="button" class="btn btn-danger" style="margin-left: 700px">로그아웃</a>
+            <a href="/post/mypost"  role="button" class="btn btn-default" style="margin-left: 700px">마이페이지</a>
+        </th:block>
+
+        <th:block th:if="${session.memberInfo != null} and ${session.memberInfo.memberId == 'admin' }">
+            <div style="margin-left: 700px;" >관리자 입니다</div>
+            <a href="/member/logout" role="button" class="btn btn-danger" style="margin-left: 700px">로그아웃</a>
+            <a href="/post/mypost" role="button" class="btn btn-default" style="margin-left: 700px">마이페이지</a>
+        </th:block>
+    </div>
+</div>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default.html}"
+>
+
+<head>
+    <!--자동추가-->
+
+</head>
+<body>
+<div layout:fragment="content">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="create-id" class="col-sm-2 control-label">아이디</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="create-id"  maxlength="10">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create-password" class="col-sm-2 control-label">비밀번호</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="create-password"  maxlength="10">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create-name" class="col-sm-2 control-label">이름</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="create-name"   maxlength="10">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="create-email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="create-email"   maxlength="50">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary" id="create-btn">회원가입</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

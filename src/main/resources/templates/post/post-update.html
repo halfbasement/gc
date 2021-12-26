@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default.html}"
+>
+
+<head>
+    <!--자동추가-->
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="jumbotron">
+        <input type="hidden" th:value="${post.postNo}" id="update-post-no">
+        <h1><input type="text" th:value="${post.postTitle}" id="update-post-title"></h1>
+        <p>글쓴이:<span th:text="${post.memberId}"/></p>
+        <p>작성일:<span th:text="${post.postWriteDate}"/></p>
+        <p><textarea maxlength="3500"  id="update-post-content">[[${post.postContent}]]</textarea></p>
+
+        <a class="btn btn-primary" role="button" id="update-post-btn"  >수정</a>
+    </div>
+
+</div>
+
+</body>
+</html>

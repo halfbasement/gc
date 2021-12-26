@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default.html}"
+>
+
+<head>
+    <!--자동추가-->
+
+</head>
+<body>
+<div layout:fragment="content">
+    <table class="table table-hover">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>가입일</th>
+        </tr>
+        <tr th:each="member:${memberList}">
+
+            <td>
+                <th:block th:if="${member.memberId == 'admin'}">
+                    <div>[[${member.memberId}]]</div>
+                </th:block>
+                <th:block th:if="${member.memberId != 'admin'}">
+                    <a th:href="@{'/member/'+ ${member.memberId}}">[[${member.memberId}]]</a>
+                </th:block>
+            </td>
+            <td th:text="${member.memberPwd}"/>
+            <td th:text="${member.memberName}"/>
+            <td th:text="${member.memberEmail}"/>
+            <td th:text="${member.memberJoinDate}"/>
+        </tr>
+
+    </table>
+    <a href="/member/create" role="button" class="btn btn-success">회원가입</a>
+</div>
+</body>
+</html>

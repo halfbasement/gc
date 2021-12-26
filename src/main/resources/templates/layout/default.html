@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        #container {
+            width: 100%;
+            margin: 0px auto;
+            text-align:center;
+            border: 0px solid #bcbcbc;
+        }
+        #header {
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 0px solid #bcbcbc;
+            background-color: lightgreen;
+        }
+        #sidebar-left {
+            width: 15%;
+            height:1200px;
+            padding: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            float: left;
+            background-color: darkkhaki;
+            border: 0px solid #bcbcbc;
+            font-size:10px;
+        }
+        #content {
+            width: 75%;
+            padding: 5px;
+            margin-right: 5px;
+            float: left;
+            border: 0px solid #bcbcbc;
+        }
+        #footer {
+            clear: both;
+            padding: 5px;
+            border: 0px solid #bcbcbc;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div th:replace="layout/fragments/header :: fragment-header" />
+
+    <div th:replace="layout/fragments/side :: fragment-side"/>
+
+    <div layout:fragment="content" id="content"></div>
+
+    <div th:replace="layout/fragments/footer :: fragment-footer"/>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!--부트스트랩은 제이쿼리가 먼저 호출되어야함-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/member.js"></script>
+    <script src="/js/post.js"></script>
+
+    <!--js가 헤비하면 body의 실행이 늦어지기 때문에 화면이 다 그려지고 js가 실행되게 하는게 좋다-->
+</body>
+</html>

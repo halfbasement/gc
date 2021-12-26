@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.backend.board.member.repository.MemberRepository">
+    <resultMap id="memberResult" type="MemberDto">
+        <result property="memberId" column="member_id"/>
+        <result property="memberPwd" column="member_pwd"/>
+        <result property="memberName" column="member_name"/>
+        <result property="memberEmail" column="member_email"/>
+        <result property="memberJoinDate" column="member_join_date"/>
+    </resultMap>
+
+    <select id="selectAllMemberList" resultMap="memberResult">
+        <![CDATA[
+        SELECT *
+        FROM MEMBER_TB
+        ORDER BY member_join_date DESC
+        ]]>
+    </select>
+
+    <update id="updateMember" parameterType="MemberDto">
+        <![CDATA[
+            update MEMBER_TB set member_pwd=#{memberPwd} , member_name=#{memberName} , member_email=#{memberEmail}
+            where member_id=#{memberId}
+        ]]>
+    </update>
+
+    <insert id="insertMember" parameterType="MemberDto">
+         <![CDATA[
+        insert into MEMBER_TB(member_id, member_pwd, member_name, member_email)
+        values (#{memberId}, #{memberPwd}, #{memberName}, #{memberEmail})
+        ]]>
+    </insert>
+
+    <delete id="deleteMember" parameterType="String">
+         <![CDATA[
+            delete from MEMBER_TB where member_id=#{memberId}
+        ]]>
+    </delete>
+
+    <select id="findById" parameterType="MemberDto" resultMap="memberResult">
+          <![CDATA[
+        SELECT * from MEMBER_TB WHERE member_id = #{memberId}
+        ]]>
+    </select>
+
+    <select id="loginById" parameterType="MemberDto" resultType="MemberDto">
+          <![CDATA[
+        SELECT * from MEMBER_TB WHERE member_id = #{memberId} and member_pwd = #{memberPwd}
+        ]]>
+    </select>
+</mapper>

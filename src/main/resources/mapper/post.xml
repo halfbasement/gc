@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.backend.board.post.repository.PostRepository">
+    <!--  <resultMap id="postResult" type="PostResponseDto">
+          <result property="postNo" column="post_no"/>
+          <result property="postTitle" column="post_title"/>
+          <result property="postContent" column="post_content"/>
+          <result property="imagefileName" column="imagefile_name"/>
+          <result property="postWriteDate" column="post_write_date"/>
+          <result property="memberId" column="member_id"/>
+      </resultMap>-->
+    
+
+    <insert id="insertPost" parameterType="PostResponseDto">
+         <![CDATA[
+        insert into post_tb(post_title, post_content,  member_id)
+        values (#{postTitle}, #{postContent},  #{memberId})
+        ]]>
+    </insert>
+
+    <update id="updatePost" parameterType="PostResponseDto">
+          <![CDATA[
+        update post_tb
+        set post_title=#{postTitle},
+            post_content=#{postContent},
+            imagefile_name=#{imagefileName}
+        where post_no = #{postNo}
+        ]]>
+    </update>
+
+    <delete id="deletePost" parameterType="PostResponseDto">
+            <![CDATA[
+        delete
+        from post_tb
+        where post_no = #{postNo}
+        ]]>
+    </delete>
+
+    <select id="selectAllPostList" resultType="PostResponseDto">
+        <![CDATA[
+        SELECT *
+        FROM post_tb
+        ORDER BY post_write_date DESC
+        ]]>
+    </select>
+
+    <select id="findByNo" parameterType="long" resultType="PostResponseDto">
+        <![CDATA[
+        SELECT *
+        FROM post_tb
+        where post_no = #{postNo}
+        ]]>
+    </select>
+
+
+    <select id="findMaxNo"  resultType="Long">
+        <![CDATA[
+        SELECT MAX(post_no)
+        FROM post_tb
+        ]]>
+    </select>
+
+    <select id="findByMemberId" parameterType="String" resultType="PostResponseDto">
+        <![CDATA[
+        SELECT *
+        FROM post_tb
+        where member_id = #{memberId}
+        ORDER BY post_write_date DESC
+        ]]>
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default.html}"
+>
+
+<head>
+    <!--자동추가-->
+
+</head>
+<body>
+<div layout:fragment="content">
+    <table class="table table-hover">
+        <tr>
+            <th></th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+
+        </tr>
+        <tr th:each="post : ${posts}">
+           <td th:text="${post.postNo}"  ></td>
+            <td><a th:href="@{'/post/'+ ${post.postNo}}">[[${post.postTitle}]]</a></td>
+            <td th:text="${post.memberId}"></td>
+            <td th:text="${post.postWriteDate}"></td>
+        </tr>
+
+    </table>
+
+    <a href="/post/post-create" role="button" class="btn btn-success">글쓰기</a>
+</div>
+</body>
+</html>

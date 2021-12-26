@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default.html}"
+>
+
+<head>
+    <!--자동추가-->
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="jumbotron">
+        <input type="hidden" id="detail-post-no" th:value="${post.postNo}">
+        <h1><span th:text="${post.postTitle}"/></h1>
+        <p>글쓴이:<span th:text="${post.memberId}"/></p>
+        <p>작성일:<span th:text="${post.postWriteDate}"/></p>
+        <p><span th:text="${post.postContent}"/></p>
+      <div th:each="image : ${post.fileList}">
+            <img th:src="@{'/display?fileName='+${image.thumbnailURL}}"/>
+        </div>
+
+
+        <th:block th:if="${member} != null and ${member.memberId} == ${post.memberId}">
+            <div style="float: left">
+                <a class="btn btn-success" th:href="@{'/post/post-create'}" role="button">글쓰기</a>
+                <a class="btn btn-primary" th:href="@{'/post/post-update/'+${post.postNo}}"  role="button"  >수정</a>
+                <a class="btn btn-danger" role="button" id="delete-post-btn">삭제</a>
+            </div>
+        </th:block>
+        <a class="btn btn-primary" th:href="@{'/post'}" role="button" style="float: right">목록</a>
+    </div>
+
+</div>
+
+</body>
+</html>
